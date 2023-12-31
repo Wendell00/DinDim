@@ -1,5 +1,6 @@
 import localFont from 'next/font/local'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const myFont = localFont({ src: '../fonts/semdisplay.woff' })
 
@@ -26,8 +27,8 @@ export default function Navbar() {
                 <li>Contato</li>
             </ul>
             <div className='h-full flex items-center text-white'>
-                <p className='mr-[30px]'>Entrar</p>
-                <button className='bg-[#64ccc5] px-4 py-2 rounded-lg'>Criar conta</button>
+                <Link href={'/app/login'}><p className='mr-[30px] cursor-pointer'>Entrar</p></Link>
+                <Link href={'/app/cadastro'}><button className='bg-[#64ccc5] px-4 py-2 rounded-lg cursor-pointer'>Criar conta</button></Link>        
             </div>
         </div>
       </nav>

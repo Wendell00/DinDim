@@ -1,6 +1,8 @@
 'use client'
 
+
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function TypeGraphic() {
@@ -77,7 +79,7 @@ export default function TypeGraphic() {
                     </label>
                   </div>
               </div>
-              <button disabled={!isAnyBtnChecked} className={`${isAnyBtnChecked ? 'text-[#fff] bg-[#053B50]' : 'bg-[#eee] text-[#999]'} w-[40%] h-[50px] rounded-lg mt-[25px] font-semibold`}>Salvar</button>
+              <Link href="/app/dashboard" className='w-[40%] h-[50px]'><button disabled={!isAnyBtnChecked} className={`${isAnyBtnChecked ? 'text-[#fff] bg-[#053B50]' : 'bg-[#eee] text-[#999]'} w-[100%] h-[100%] rounded-lg mt-[25px] font-semibold`}>Salvar</button></Link>
         </form>
     </div>
   )

@@ -4,14 +4,58 @@ import localFont from 'next/font/local'
 import Image from 'next/image'
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
-import { useState } from 'react';
+import { use, useState } from 'react';
 import Link from 'next/link'
+import validationForm from './utils/validationForm';
 
 const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
 
 export default function Cadastro() {
     const [facebookHover, setFacebookHover] = useState(false)
     const [googleHover, setGoogleHover] = useState(false)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordRepeat, setPasswordRepeat] = useState('')
+    const [formError, setFormError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const handleValidation = async () => {
+        if(!(password == passwordRepeat || password == '')){
+            if(password == ''){
+                setFormError(true)
+                setErrorMessage('Senha obrigatória')
+            }
+            setFormError(true)
+            setErrorMessage('Senhas não conferem')
+            return false
+        }else {
+            setFormError(false)
+        }
+
+        if(email == ''){
+            setFormError(true)
+            setErrorMessage('E-mail obrigatório')
+            return false
+        }
+
+        const validation = validationForm(email, password)
+
+        if(!validation){
+            const data = {
+                "email": email,
+                "password": password
+            }
+
+            const response = await fetch('/api/user', {
+                method: "POST",
+                body: JSON.stringify(data),
+            });
+        }else {
+            setFormError(true)
+            setErrorMessage(validation)
+        }
+    }
+
   return (
     <>
     <div className='w-screen h-screen bg-[#053B50] flex flex-col items-center'>
@@ -37,20 +81,28 @@ export default function Cadastro() {
             </div>
             <form action="" className='flex flex-col w-full h-auto '>
                 <label htmlFor="" className='mt-[10px]'>Seu e-mail</label>
-                <input type="text" className='w-full rounded-lg border border-[#eee] px-4 py-3 mt-[10px]'/>
+                <input type="text" className={`${formError && errorMessage[0] == 'E' ? 'border-[#FF6347]' : 'border-[#eee]'} w-full rounded-lg border px-4 py-3 mt-[10px]`} onChange={(e) => setEmail(e.target.value)}/>
+                <p className={`${formError && errorMessage[0] == 'E' ? 'block': 'hidden'} mt-[10px] text-[#FF6347]`}>
+                    {errorMessage}
+                </p>
                 <div className='flex flex-row w-full h-auto'>
-                    <div className='flex flex-col w-[50%] h-auto mr-[5%]'>
+                    <div className='flex flex-col w-[50%] h-auto mr-[5%] relative'>
                         <label htmlFor="" className='mt-[10px]'>Sua senha</label>
-                        <input type="password" className='w-[100%] rounded-lg border border-[#eee] px-4 py-3 mt-[10px]'/>
+                        <input type="password" className={`${formError && errorMessage[0] == 'S' ? 'border-[#FF6347] mb-[20px]' : 'border-[#eee] mb-[0px]'} w-[100%] rounded-lg border px-4 py-3 mt-[10px]`} onChange={(e) => setPassword(e.target.value)}/>
+                        <p className={`${formError && errorMessage[0] == 'S' ? 'block': 'hidden'} absolute bottom-[-10px] text-[#FF6347]`}>
+                            {errorMessage}
+                        </p>
                     </div>
                     <div className='flex flex-col w-[50%] h-auto'>
                         <label htmlFor="" className='mt-[10px]'>Repetir Senha</label>
-                        <input type="password" className='w-[100%] rounded-lg border border-[#eee] px-4 py-3 mt-[10px]'/>
+                        <input type="password" 
+                        className={`${formError && errorMessage[0] == 'S' ? 'border-[#FF6347]' : 'border-[#eee]'} w-[100%] rounded-lg border px-4 py-3 mt-[10px]`}
+                        onChange={(e) => setPasswordRepeat(e.target.value)}/>
                     </div>
                 </div>
             
             </form>
-            <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300'>Começar a usar</button>
+            <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300' onClick={handleValidation}>Começar a usar</button>
             <p className='text-center text-md mb-[15px]'>Já sou cadastrado. <Link href="/app/login"><span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer'>Quero fazer login!</span></Link></p>
         </div>
     </div>

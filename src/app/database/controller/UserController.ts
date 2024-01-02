@@ -2,12 +2,16 @@ import User from '../schemas/UserSchema'
 import database from '../database'
 
 const saveUser = async (queryUser: any) =>{
-    if(!database.connect()) return false
+    try{
+        await database.connect()
+    } catch(err){
+        console.log(err)
+    }
 
     const newUser = new User(queryUser)
-    const disconnectDatabase = database.disconnect();
-    return await newUser.save()
-    await disconnectDatabase;
+    return await newUser.save().then(async () =>{{
+        await database.disconnect()
+    }})
 }
 
 const userController = {

@@ -15,14 +15,14 @@ import userController from '../../database/controller/UserController';
 
 export const POST = async (req: Request) => {
   const body = await req.json()
-  console.log(body)
   const response = await userController.saveUser(body)
-  .then((data)=>{
-    console.log(data)
+  .then(() =>{
+    console.log('Usuario Salvo com Sucesso!')
   })
-  .catch((err)=>{
+  .catch((err) =>{
     console.log(err)
   })
-  return new Response(body)
+  
+  return new Response('ok')
 }
 

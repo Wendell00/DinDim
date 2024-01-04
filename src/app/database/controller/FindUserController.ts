@@ -1,14 +1,14 @@
 import User from '../schemas/UserSchema'
 import database from '../database'
 
-const findUser = async (emailInput: string) => {
+const findUser = async (email: string) => {
     try{
         await database.connect()
     } catch(err){
         console.log(err)
     }
 
-    const teste = await User.find({email: emailInput})
+    const teste = await User.find({email: email})
     await database.disconnect()
     try{
         teste[0].email

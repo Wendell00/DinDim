@@ -66,7 +66,7 @@ export default function Cadastro() {
     }
 
     const handleClick = async () => {
-        const response = await fetch('/api/user', {
+        const response = await fetch(`/api/user/&email=${email}`, {
             method: "GET",
         });
 
@@ -80,7 +80,7 @@ export default function Cadastro() {
 
   return (
     <>
-    <div className='w-screen h-screen bg-[#053B50] flex flex-col items-center'>
+    <div className='w-screen h-screen bg-[#ddd] flex flex-col items-center'>
         <Link href="/">
             <div className='w-full h-[100px] flex justify-center items-end'>
             <h1 className={`${myFont.className} text-[3em] text-white mr-[10px]`}> <span className='text-[#64ccc5]'>Din</span> Dim</h1>

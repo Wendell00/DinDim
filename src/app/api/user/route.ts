@@ -1,17 +1,22 @@
 import { NextResponse } from 'next/server';
-// import database from '@/app/database/database';
 
-// export const GET = async (request: Request) => {
-//     try {
-//       await database.connect();
-//       return NextResponse.json({ message: 'Conectado' })
-//     } catch(error) {
-//       return NextResponse.json("Não conectado" + error)
-//     }
-//   }
-
-// import saveUser from "@/database/controller/UserController"
 import userController from '../../database/controller/UserController';
+import findUser from '../../database/controller/FindUserController';
+
+export const GET = async (req: Request) =>{
+  let text = ''
+  const response = await findUser()
+  .then((result) =>{
+    console.log(result)
+    if(result == 'E-mail já cadastrado'){
+      text = result
+    }else{
+      text = 'Não encontrado'
+    }
+  })
+
+  return NextResponse.json({ error: {text} })
+}
 
 export const POST = async (req: Request) => {
   const body = await req.json()
@@ -22,7 +27,7 @@ export const POST = async (req: Request) => {
   .catch((err) =>{
     console.log(err)
   })
-  
+
   return new Response('ok')
 }
 

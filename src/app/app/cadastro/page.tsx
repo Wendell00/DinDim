@@ -7,6 +7,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { use, useState } from 'react';
 import Link from 'next/link'
 import validationForm from './utils/validationForm';
+import findUser from '@/app/database/controller/FindUserController';
 
 const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
 
@@ -38,22 +39,43 @@ export default function Cadastro() {
             return false
         }
 
-        const validation = validationForm(email, password)
+        if(await handleClick()){
+            const validation = validationForm(email, password)
 
-        if(!validation){
-            const data = {
-                "email": email,
-                "password": password
-            }
-
-            const response = await fetch('/api/user', {
-                method: "POST",
-                body: JSON.stringify(data),
-            });
-        }else {
+            if(!validation){
+                const data = {
+                    "email": email,
+                    "password": password
+                }
+    
+                const response = await fetch('/api/user', {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                });
+    
+                window.location.href = "/app/login";
+    
+            }else {
+                setFormError(true)
+                setErrorMessage(validation)
+            }   
+        }else{
             setFormError(true)
-            setErrorMessage(validation)
+            setErrorMessage('E-mail já cadastrado')
         }
+    }
+
+    const handleClick = async () => {
+        const response = await fetch('/api/user', {
+            method: "GET",
+        });
+
+        const user = await response.json();
+        const text = user.error.text
+        
+        if(text == "E-mail já cadastrado"){
+            return false
+        }else return true
     }
 
   return (

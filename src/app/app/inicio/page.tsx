@@ -5,7 +5,6 @@ import Main from './components/mainApp'
 export default function Inicio() {
   return (
     <>
-      <Navbar/>
       <Main/>
     </>
   )

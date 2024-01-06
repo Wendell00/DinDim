@@ -12,6 +12,9 @@ const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
 export default function Login() {
     const [facebookHover, setFacebookHover] = useState(false)
     const [googleHover, setGoogleHover] = useState(false)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState("")
+    
   return (
     <>
     <div className='w-screen h-screen bg-[#ddd] flex flex-col items-center'>

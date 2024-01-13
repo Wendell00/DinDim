@@ -33,5 +33,9 @@ export const options: NextAuthOptions = {
                 return null
             },
         })    
-    ]
+    ],
+
+    pages:{
+        signIn: "/app/login",
+    }
 }

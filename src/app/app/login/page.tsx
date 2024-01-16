@@ -40,23 +40,25 @@ export default function Login() {
         theme="light" 
         />
         <div className='w-[45%] h-screen bg-[#ddd] flex flex-col items-center justify-center'>
-            <div className='w-[495px] h-[auto] bg-[#fff] rounded-lg px-8'>
-                <h2 className='text-center font-semibold text-2xl mt-[30px] text-[#333]' onClick={notify}>Acesse sua conta</h2>
-                <div className={`${facebookHover ? 'bg-[#3b5998] border-[#3b599890]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer mt-[25px] duration-300`} onMouseEnter={() =>{setFacebookHover(true)}} onMouseLeave={() =>{setFacebookHover(false)}}><FaFacebookF className={`${facebookHover ? 'invisible' : 'visible'} text-[#3b5998] text-2xl `}/><div className='w-full'><p className={`${facebookHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Entre com o Facebook</p></div></div>
-                <div className={`${googleHover ? 'bg-[#EA4435] border-[#EA443590]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer justify-center mt-[15px]`} onMouseEnter={() =>{setGoogleHover(true)}} onMouseLeave={() =>{setGoogleHover(false)}}><FcGoogle className={`${googleHover ? 'invisible' : 'visible'} text-2xl `}/><div className='w-full'><p className={`${googleHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Entre com o Google</p></div></div>
-                <div className='relative w-full mt-[25px] flex justify-center'>
-                    <p className='bg-[#fff] text-center relative z-30 w-[35px] text-[#444]'>ou</p>
-                    <div className='w-full h-[1px] bg-[#bbb] absolute bottom-[10px] z-20'></div>
+            <div className='w-[100%] h-[100%] bg-[#fff] flex items-center justify-center px-16'>
+                <div className='w-[100%] h-[auto]'>
+                    <h2 className='text-center font-semibold text-2xl mt-[30px] text-[#333]' onClick={notify}>Acesse sua conta</h2>
+                    <div className={`${facebookHover ? 'bg-[#3b5998] border-[#3b599890]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer mt-[25px] duration-300`} onMouseEnter={() =>{setFacebookHover(true)}} onMouseLeave={() =>{setFacebookHover(false)}}><FaFacebookF className={`${facebookHover ? 'invisible' : 'visible'} text-[#3b5998] text-2xl `}/><div className='w-full'><p className={`${facebookHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Entre com o Facebook</p></div></div>
+                    <div className={`${googleHover ? 'bg-[#EA4435] border-[#EA443590]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer justify-center mt-[15px]`} onMouseEnter={() =>{setGoogleHover(true)}} onMouseLeave={() =>{setGoogleHover(false)}}><FcGoogle className={`${googleHover ? 'invisible' : 'visible'} text-2xl `}/><div className='w-full'><p className={`${googleHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Entre com o Google</p></div></div>
+                    <div className='relative w-full mt-[25px] flex justify-center'>
+                        <p className='bg-[#fff] text-center relative z-30 w-[35px] text-[#444]'>ou</p>
+                        <div className='w-full h-[1px] bg-[#bbb] absolute bottom-[10px] z-20'></div>
+                    </div>
+                    <form action="" className='flex flex-col w-full h-auto '>
+                        <label htmlFor="" className='mt-[10px]'>Seu e-mail</label>
+                        <input type="text" className='w-full rounded-lg border border-[#eee] px-4 py-3 mt-[10px]' onChange={(e) => setEmail(e.target.value)}/>
+                        <label htmlFor="" className='mt-[10px]'>Sua senha</label>
+                        <input type="password" className='w-full rounded-lg border border-[#eee] px-4 py-3 mt-[10px]' onChange={(e) => setPassword(e.target.value)}/>
+                        <Link href="/app/esqueci-minha-senha"><p className='mt-[5px] text-[#222] text-[0.9em] cursor-pointer'>Esqueci minha senha</p></Link>
+                    </form>
+                    <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300'>Entrar</button>
+                    <p className='text-center text-md mb-[15px]'>Ainda não possui conta? <Link href="/app/cadastro"><span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer'>Faça o cadastro!</span></Link></p>
                 </div>
-                <form action="" className='flex flex-col w-full h-auto '>
-                    <label htmlFor="" className='mt-[10px]'>Seu e-mail</label>
-                    <input type="text" className='w-full rounded-lg border border-[#eee] px-4 py-3 mt-[10px]' onChange={(e) => setEmail(e.target.value)}/>
-                    <label htmlFor="" className='mt-[10px]'>Sua senha</label>
-                    <input type="password" className='w-full rounded-lg border border-[#eee] px-4 py-3 mt-[10px]' onChange={(e) => setPassword(e.target.value)}/>
-                    <Link href="/app/esqueci-minha-senha"><p className='mt-[5px] text-[#222] text-[0.9em] cursor-pointer'>Esqueci minha senha</p></Link>
-                </form>
-                <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300'>Entrar</button>
-                <p className='text-center text-md mb-[15px]'>Ainda não possui conta? <Link href="/app/cadastro"><span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer'>Faça o cadastro!</span></Link></p>
             </div>
         </div>
         <div className='w-[55%] h-screen bg-[#053B50] flex justify-center items-center relative'>

@@ -80,52 +80,66 @@ export default function Cadastro() {
 
   return (
     <>
-    <div className='w-screen h-screen bg-[#ddd] flex flex-col items-center'>
-        <Link href="/">
-            <div className='w-full h-[100px] flex justify-center items-end'>
-            <h1 className={`${myFont.className} text-[3em] text-white mr-[10px]`}> <span className='text-[#64ccc5]'>Din</span> Dim</h1>
-                <Image
-                src={'/logoIcon.png'}
-                width={100}
-                height={100}
-                alt='Din Dim'
-                className='h-[70px] w-auto'
-                />
-            </div>
-        </Link>
-        <div className='w-[495px] h-[auto] bg-[#fff] mt-[20px] rounded-lg px-8'>
-            <h2 className='text-center font-semibold text-2xl mt-[30px] text-[#333]'>Crie sua conta</h2>
-            <div className={`${facebookHover ? 'bg-[#3b5998] border-[#3b599890]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer mt-[25px] duration-300`} onMouseEnter={() =>{setFacebookHover(true)}} onMouseLeave={() =>{setFacebookHover(false)}}><FaFacebookF className={`${facebookHover ? 'invisible' : 'visible'} text-[#3b5998] text-2xl `}/><div className='w-full'><p className={`${facebookHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Registre-se com o Facebook</p></div></div>
-            <div className={`${googleHover ? 'bg-[#EA4435] border-[#EA443590]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer justify-center mt-[15px]`} onMouseEnter={() =>{setGoogleHover(true)}} onMouseLeave={() =>{setGoogleHover(false)}}><FcGoogle className={`${googleHover ? 'invisible' : 'visible'} text-2xl `}/><div className='w-full'><p className={`${googleHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Registre-se com o Google</p></div></div>
-            <div className='relative w-full mt-[25px] flex justify-center'>
-                <p className='bg-[#fff] text-center relative z-30 w-[35px] text-[#444]'>ou</p>
-                <div className='w-full h-[1px] bg-[#bbb] absolute bottom-[10px] z-20'></div>
-            </div>
-            <form action="" className='flex flex-col w-full h-auto '>
-                <label htmlFor="" className='mt-[10px]'>Seu e-mail</label>
-                <input type="text" className={`${formError && errorMessage[0] == 'E' ? 'border-[#FF6347]' : 'border-[#eee]'} w-full rounded-lg border px-4 py-3 mt-[10px]`} onChange={(e) => setEmail(e.target.value)}/>
-                <p className={`${formError && errorMessage[0] == 'E' ? 'block': 'hidden'} mt-[10px] text-[#FF6347]`}>
-                    {errorMessage}
-                </p>
-                <div className='flex flex-row w-full h-auto'>
-                    <div className='flex flex-col w-[50%] h-auto mr-[5%] relative'>
-                        <label htmlFor="" className='mt-[10px]'>Sua senha</label>
-                        <input type="password" className={`${formError && errorMessage[0] == 'S' ? 'border-[#FF6347] mb-[20px]' : 'border-[#eee] mb-[0px]'} w-[100%] rounded-lg border px-4 py-3 mt-[10px]`} onChange={(e) => setPassword(e.target.value)}/>
-                        <p className={`${formError && errorMessage[0] == 'S' ? 'block': 'hidden'} absolute bottom-[-10px] text-[#FF6347]`}>
-                            {errorMessage}
-                        </p>
-                    </div>
-                    <div className='flex flex-col w-[50%] h-auto'>
-                        <label htmlFor="" className='mt-[10px]'>Repetir Senha</label>
-                        <input type="password" 
-                        className={`${formError && errorMessage[0] == 'S' ? 'border-[#FF6347]' : 'border-[#eee]'} w-[100%] rounded-lg border px-4 py-3 mt-[10px]`}
-                        onChange={(e) => setPasswordRepeat(e.target.value)}/>
-                    </div>
+    <div className='w-screen h-screen flex overflow-y-hidden'>
+        <div className='w-[45%] h-screen bg-[#ddd] flex flex-col items-center justify-center'>
+        <div className='w-[100%] h-[100%] bg-[#fff] flex items-center justify-center px-16'>
+            <div className='w-[100%] h-[auto]'>
+                <h2 className='text-center font-semibold text-2xl mt-[30px] text-[#333]'>Crie sua conta</h2>
+                <div className={`${facebookHover ? 'bg-[#3b5998] border-[#3b599890]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer mt-[25px] duration-300`} onMouseEnter={() =>{setFacebookHover(true)}} onMouseLeave={() =>{setFacebookHover(false)}}><FaFacebookF className={`${facebookHover ? 'invisible' : 'visible'} text-[#3b5998] text-2xl `}/><div className='w-full'><p className={`${facebookHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Registre-se com o Facebook</p></div></div>
+                <div className={`${googleHover ? 'bg-[#EA4435] border-[#EA443590]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer justify-center mt-[15px]`} onMouseEnter={() =>{setGoogleHover(true)}} onMouseLeave={() =>{setGoogleHover(false)}}><FcGoogle className={`${googleHover ? 'invisible' : 'visible'} text-2xl `}/><div className='w-full'><p className={`${googleHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Registre-se com o Google</p></div></div>
+                <div className='relative w-full mt-[25px] flex justify-center'>
+                    <p className='bg-[#fff] text-center relative z-30 w-[35px] text-[#444]'>ou</p>
+                    <div className='w-full h-[1px] bg-[#bbb] absolute bottom-[10px] z-20'></div>
                 </div>
-            
-            </form>
-            <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300' onClick={handleValidation}>Começar a usar</button>
-            <p className='text-center text-md mb-[15px]'>Já sou cadastrado. <Link href="/app/login"><span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer'>Quero fazer login!</span></Link></p>
+                <form action="" className='flex flex-col w-full h-auto '>
+                    <label htmlFor="" className='mt-[10px]'>Seu e-mail</label>
+                    <input type="text" className={`${formError && errorMessage[0] == 'E' ? 'border-[#FF6347]' : 'border-[#eee]'} w-full rounded-lg border px-4 py-3 mt-[10px]`} onChange={(e) => setEmail(e.target.value)}/>
+                    <p className={`${formError && errorMessage[0] == 'E' ? 'block': 'hidden'} mt-[10px] text-[#FF6347]`}>
+                        {errorMessage}
+                    </p>
+                    <div className='flex flex-row w-full h-auto'>
+                        <div className='flex flex-col w-[50%] h-auto mr-[5%] relative'>
+                            <label htmlFor="" className='mt-[10px]'>Sua senha</label>
+                            <input type="password" className={`${formError && errorMessage[0] == 'S' ? 'border-[#FF6347] mb-[20px]' : 'border-[#eee] mb-[0px]'} w-[100%] rounded-lg border px-4 py-3 mt-[10px]`} onChange={(e) => setPassword(e.target.value)}/>
+                            <p className={`${formError && errorMessage[0] == 'S' ? 'block': 'hidden'} absolute bottom-[-10px] text-[#FF6347]`}>
+                                {errorMessage}
+                            </p>
+                        </div>
+                        <div className='flex flex-col w-[50%] h-auto'>
+                            <label htmlFor="" className='mt-[10px]'>Repetir Senha</label>
+                            <input type="password" 
+                            className={`${formError && errorMessage[0] == 'S' ? 'border-[#FF6347]' : 'border-[#eee]'} w-[100%] rounded-lg border px-4 py-3 mt-[10px]`}
+                            onChange={(e) => setPasswordRepeat(e.target.value)}/>
+                        </div>
+                    </div>
+                
+                </form>
+                <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300' onClick={handleValidation}>Começar a usar</button>
+                <p className='text-center text-md mb-[15px]'>Já sou cadastrado. <Link href="/app/login"><span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer'>Quero fazer login!</span></Link></p>
+            </div>
+        </div>
+        </div>
+        <div className='w-[55%] h-screen bg-[#053B50] flex justify-center items-center relative'>
+            <Image
+            src={'/loginImage.jpg'}
+            width={900}
+            height={900}
+            alt='Din Dim'
+            className='h-auto w-full opacity-[6%] absolute z-10'
+            />
+
+            <div className='w-full h-full flex flex-col justify-center items-center cursor-pointer z-20 '>
+                <div className='w-full h-[100px] flex items-center justify-center'>
+                    <h1 className={`${myFont.className} text-[4em] text-white mr-[10px]`}> <span className='text-[#64ccc5]'>Din</span> Dim</h1>
+                        <Image
+                        src={'/logoIcon.png'}
+                        width={100}
+                        height={100}
+                        alt='Din Dim'
+                        className='h-[110px] w-auto mt-[-15px]'
+                        />
+                </div>
+            </div>
         </div>
     </div>
     </>

@@ -8,9 +8,9 @@ import { use, useState } from 'react';
 import Link from 'next/link'
 import validationForm from '../utils/validationForm';
 
-const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
+const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
 
-export default function Cadastro() {
+export default function SignUpComponent({ page }: any) {
     const [facebookHover, setFacebookHover] = useState(false)
     const [googleHover, setGoogleHover] = useState(false)
     const [email, setEmail] = useState('')
@@ -51,8 +51,9 @@ export default function Cadastro() {
                     method: "POST",
                     body: JSON.stringify(data),
                 });
-    
-                window.location.href = "/app/login";
+                
+                page(0)
+                // window.location.href = "/app/login";
     
             }else {
                 setFormError(true)
@@ -76,6 +77,10 @@ export default function Cadastro() {
             return false
         }else return true
     }
+
+    const handlePage = () => {
+        page(0);
+    };
 
   return (
     <>
@@ -111,7 +116,7 @@ export default function Cadastro() {
             
             </form>
             <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300' onClick={handleValidation}>Começar a usar</button>
-            <p className='text-center text-md mb-[15px]'>Já sou cadastrado. <Link href="/app/login"><span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer'>Quero fazer login!</span></Link></p>
+            <p className='text-center text-md mb-[15px]'>Já sou cadastrado. <Link href="/app/login"><span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer' onClick={handlePage}>Quero fazer login!</span></Link></p>
         </div>
     </>
   )

@@ -6,14 +6,18 @@ import { FaFacebookF } from "react-icons/fa";
 import { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
-const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
+const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
 
-export default function LoginComponent() {
+export default function LoginComponent({ page }: any) {
     const [facebookHover, setFacebookHover] = useState(false)
     const [googleHover, setGoogleHover] = useState(false)
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState("");
     const [password, setPassword] = useState("")
+
+    const handlePage = () => {
+        page(1);
+    };
     
   return (
     <>
@@ -33,7 +37,7 @@ export default function LoginComponent() {
                 <p className='mt-[5px] text-[#222] text-[0.9em] cursor-pointer'>Esqueci minha senha</p>
             </form>
             <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300'>Entrar</button>
-            <p className='text-center text-md mb-[15px]'>Ainda não possui conta? <span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer'>Faça o cadastro!</span></p>
+            <p className='text-center text-md mb-[15px]'>Ainda não possui conta? <span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer' onClick={handlePage}>Faça o cadastro!</span></p>
         </div>
     </>
   )

@@ -9,11 +9,12 @@ import Link from 'next/link'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import LoginComponent from './components/login';
+import SignUpComponent from './components/cadastro';
 
 const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
 
 export default function Login() {
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(0) // estado para a troca de componentes de login/cadastro/esqueci a senha
 
     const notify = () => {
         toast.success("Registrado com sucesso !", {
@@ -36,14 +37,16 @@ export default function Login() {
         pauseOnHover
         theme="light" 
         />
-        <div className='w-[45%] h-screen bg-[#ddd] flex flex-col items-center justify-center'>
+        <div className={`${page == 1 ? 'order-2' : ''} w-[45%] h-screen bg-[#ddd] flex flex-col items-center justify-center`}>
             <div className='w-[100%] h-[100%] bg-[#fff] flex items-center justify-center px-16'>
-                <LoginComponent/>
+                {/* {page == 2 && <LoginComponent page={setPage}/>} */}
+                {page == 1 && <SignUpComponent page={setPage}/>}
+                {page == 0 && <LoginComponent page={setPage}/>}
             </div>
         </div>
         <div className='w-[55%] h-screen bg-[#053B50] flex justify-center items-center relative'>
             <Image
-            src={'/loginImage.jpg'}
+            src={`${page == 0 && '/loginImage.jpg' || page == 1 && '/signUpImage.jpg' || page == 2 && '/forgetPasswordImage.jpg'}`}
             width={900}
             height={900}
             alt='Din Dim'

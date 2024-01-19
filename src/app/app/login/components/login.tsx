@@ -34,7 +34,7 @@ export default function LoginComponent({ page }: any) {
                 <input type="text" className='w-full rounded-lg border border-[#eee] px-4 py-3 mt-[10px]' onChange={(e) => setEmail(e.target.value)}/>
                 <label htmlFor="" className='mt-[10px]'>Sua senha</label>
                 <input type="password" className='w-full rounded-lg border border-[#eee] px-4 py-3 mt-[10px]' onChange={(e) => setPassword(e.target.value)}/>
-                <p className='mt-[5px] text-[#222] text-[0.9em] cursor-pointer'>Esqueci minha senha</p>
+                <p className='mt-[5px] text-[#222] text-[0.9em] cursor-pointer' onClick={()=>{page(2)}}>Esqueci minha senha</p>
             </form>
             <button className='w-full h-[50px] bg-[#053B50] rounded-lg text-white font-semibold mt-[20px] mb-[20px] hover:bg-[#053B50cc] duration-300'>Entrar</button>
             <p className='text-center text-md mb-[15px]'>Ainda não possui conta? <span className='text-[#053B50] decoration-solid font-semibold underline cursor-pointer' onClick={handlePage}>Faça o cadastro!</span></p>

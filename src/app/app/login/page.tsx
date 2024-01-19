@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import LoginComponent from './components/login';
 import SignUpComponent from './components/cadastro';
+import RecoveryPasswordComponent from './components/recoveryPassword';
 
 const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
 
@@ -39,7 +40,7 @@ export default function Login() {
         />
         <div className={`${page == 1 ? 'order-2' : ''} w-[45%] h-screen bg-[#ddd] flex flex-col items-center justify-center`}>
             <div className='w-[100%] h-[100%] bg-[#fff] flex items-center justify-center px-16'>
-                {/* {page == 2 && <LoginComponent page={setPage}/>} */}
+                {page == 2 && <RecoveryPasswordComponent page={setPage}/>}
                 {page == 1 && <SignUpComponent page={setPage}/>}
                 {page == 0 && <LoginComponent page={setPage}/>}
             </div>

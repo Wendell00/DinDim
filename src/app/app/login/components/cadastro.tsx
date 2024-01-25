@@ -11,6 +11,7 @@ export default function SignUpComponent({ page, notifyRegister }: any) {
     const [facebookHover, setFacebookHover] = useState(false)
     const [googleHover, setGoogleHover] = useState(false)
     const [emailDB, setEmailDB] = useState(false)
+    const [emailDBMessage, setEmailDBMessage] = useState('')
 
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -89,10 +90,6 @@ export default function SignUpComponent({ page, notifyRegister }: any) {
         }
     }
 
-    const handlePage = () => {
-        page(0);
-    };
-
   return (
     <>
         <div className='w-[100%] h-auto'>
@@ -136,7 +133,7 @@ export default function SignUpComponent({ page, notifyRegister }: any) {
 
                 {(errors.email || emailDB) && 
                 <p className='mt-[10px] text-[#FF6347]'>
-                    {errors.email?.message || emailDB ? 'E-mail já cadastrado' : '' }
+                    {emailDB ? "E-mail já cadastrado" : errors.email?.message }
                 </p>}
 
                 <div className='flex flex-row w-full h-auto'>
@@ -176,9 +173,9 @@ export default function SignUpComponent({ page, notifyRegister }: any) {
                 </button>
             </form>
             <p className='text-center text-md mb-[15px]'>
-                Já sou cadastrado. 
+                Já sou cadastrado.&nbsp;
                 <span className='text-primary decoration-solid font-semibold underline cursor-pointer' 
-                    onClick={handlePage}>
+                    onClick={()=> page(0)}>
                         Quero fazer login!
                 </span>
             </p>

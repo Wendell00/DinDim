@@ -43,7 +43,7 @@ export default function TypeGraphic() {
           className='absolute right-[50%] left-[50%] h-[80px] w-auto translate-x-[-50%] bottom-[-35%]'
         />
       </div>
-      <form className='w-full h-auto md:h-[562px] md:w-[100%] md:h-auto px-4 py-12 flex flex-col items-center'>
+      <form className='w-full h-auto md:h-[562px] md:w-[100%] px-4 py-12 flex flex-col items-center'>
         <h2 className='text-center text-3xl text-[#2e312d] font-semibold mb-[5px]'>
           Quais são as suas metas com o Din Dim?
         </h2>
@@ -88,7 +88,7 @@ export default function TypeGraphic() {
                 : 'bg-[#eee] text-[#999]'
             } w-full h-[100%] md:w-[100%] md:h-[50px] rounded-lg mt-[25px] font-semibold`}
           >
-            Salvar
+            Continuar
           </button>
         </Link>
       </form>

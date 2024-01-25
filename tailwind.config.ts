@@ -14,13 +14,36 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'main-background': "url('/background.png')",  
       },
+      minHeight: {
+        'mainApp': 'calc(100vh - 52px)',
+      },
       height:{
         'mainApp': 'calc(100vh - 52px)',
         'loginApp': 'calc(100vh - 60px)'
       },
       colors: {
         'primary': '#053B50',
-        'primaryOpacity': '#053B50cc'
+        'primaryOpacity': '#053B50cc',
+        'secondary': '#64ccc5'
+      },
+      screens: {
+        'tablet': '640px',
+        // => @media (min-width: 640px) { ... }
+  
+        'laptop': '1024px',
+        // => @media (min-width: 1024px) { ... }
+  
+        'desktop': '1280px',
+        // => @media (min-width: 1280px) { ... }
+      },
+      keyframes: {
+        opacityUp: {
+          '0%': { opacity: '0%' },
+          '100%': { opacity: '100%' },
+        }
+      },
+      animation: {
+        opacityUp: 'opacityUp 1s ease-in-out',
       }
     },
   },

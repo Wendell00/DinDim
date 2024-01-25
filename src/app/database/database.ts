@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 mongoose.set('strictQuery', true)
 
-const dbname = "dindim"
+const dbname = 'dindim'
 const url = `mongodb+srv://wendelldev353:${process.env.MONGO_PWD}@cluster0.dcfurg5.mongodb.net/${dbname}?retryWrites=true&w=majority`
 
 const connect = async () => {

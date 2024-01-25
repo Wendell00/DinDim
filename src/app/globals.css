@@ -89,3 +89,7 @@ body{
       rotate: 0;
     }
   }
+
+  .divExpansivel {
+    transition: height 0.5s ease-in-out;
+  }

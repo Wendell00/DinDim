@@ -4,22 +4,38 @@ import localFont from 'next/font/local'
 import Image from 'next/image'
 import {FaGear, FaBell, FaCircleUser} from 'react-icons/fa6'
 import { LuAlignJustify, LuX } from "react-icons/lu";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link'
 
 const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
 
-const Navbar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+interface DocumentWithBodyClassList extends Document {
+    body: HTMLBodyElement & {
+      classList: DOMTokenList;
+    };
+}
 
-  const handleToggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+const Navbar = () => { 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  interface NavLinksType {
-    link: string;
-    href: string;
-  }
+    useEffect(() => {
+    const documentWithClassList = document as DocumentWithBodyClassList;
+
+    if (isSidebarOpen) {
+        documentWithClassList.body.classList.add("overflow-y-hidden");
+    } else {
+        // documentWithClassList.body.classList.remove("overflow-y-hidden");
+    }
+    }, [isSidebarOpen]);
+
+    const handleToggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    interface NavLinksType {
+        link: string;
+        href: string;
+    }
 
   const navlinks:  NavLinksType[] = [
     {
@@ -45,7 +61,7 @@ const Navbar = () => {
         <nav className="w-screen h-[52px] bg-primary flex justify-center relative z-20">
             <div className="h-full w-full max-w-[1200px] px-4 flex items-center justify-between">
                 <div className="flex items-center h-full cursor-pointer">
-                <h1 className={`${myFont.className} text-[2.2em] text-white mr-4`}>
+                <h1 className={`${myFont.className}  text-[1.6em] sm:text-[2.2em] text-white mr-4`}>
                     <span className="text-[#64ccc5]">Din</span> Dim
                 </h1>
                 <Image
@@ -58,9 +74,8 @@ const Navbar = () => {
                 </div>
                 <ul className="hidden md:flex h-full w-[45%] justify-between items-center text-white text-sm">
                     {navlinks.map((navlink) => (
-                        <Link href={navlink.href}>
+                        <Link href={navlink.href} key={navlink.link}>
                             <li
-                                key={navlink.link}
                             >
                             {navlink.link}
                             </li>
@@ -74,22 +89,21 @@ const Navbar = () => {
                 </div>
                 <div className='h-full flex md:hidden items-center text-white' onClick={handleToggleSidebar}>
                     {isSidebarOpen ? 
-                    <LuX className="w-auto cursor-pointer h-[60%] mr-8"/> : 
-                    <LuAlignJustify className="w-auto cursor-pointer h-[60%] mr-8"/>}
+                    <LuX className="w-auto cursor-pointer h-[60%] mr-2"/> : 
+                    <LuAlignJustify className="w-auto cursor-pointer h-[60%] mr-2"/>}
                 </div>
             </div>
         </nav>
         {isSidebarOpen ? 
-            <div className='absolute w-screen min-h-screen h-auto bg-[#00000077] z-30 top-0 flex justify-end'>
+            <div className='absolute w-screen min-h-screen h-auto bg-[#00000077] z-30 top-0 flex justify-end overflow-y-scroll'>
                 <aside className='w-[280px] min-h-screen bg-white flex flex-col justify-between px-4'>
                     <div className='flex flex-col'>
                         <FaCircleUser className="text-primary w-auto cursor-pointer h-[85px] mt-[30px]" />
                         <h2 className='text-[20px] text-[#000] text-center font-medium mt-[15px]'>Username</h2>
                         <ul className='flex flex-col w-full h-auto pt-[10px]'>
                             {navlinks.map((navlink) => (
-                                <Link href={navlink.href}>
+                                <Link href={navlink.href} key={navlink.link}>
                                     <li
-                                        key={navlink.link}
                                         className='border-b border-[#eee] px-4 pb-4 hover:text-primary mt-[30px]'
                                     >
                                     {navlink.link}

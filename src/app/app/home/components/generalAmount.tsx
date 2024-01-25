@@ -2,15 +2,18 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react';
-import { IoEyeOutline } from "react-icons/io5";
+import { useContext, useState } from 'react';
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { FaWallet } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import {motion} from 'framer-motion'
+import { FormContext } from '@/app/contexts/infoContext'
 
 export default function GeneralAmout() {
     const [hoverComponent, setHoverComponent] = useState(false)
     const [altura, setAltura] = useState<number>(340);
+
+    const {amountVisible, setAmountVisible} = useContext(FormContext)
 
     const handleClick = () => {
       // Atualiza a altura da div ao clicar no ícone
@@ -32,8 +35,16 @@ export default function GeneralAmout() {
                 <div className='border-l-4 border-[#129e3f] h-[70%] flex flex-col px-4 pb-4'>
                     <p className='text-[#888] text-[15px]'>Saldo Geral</p>
                     <div className='flex items-center'>
-                        <p className='font-normal text-[#888]'>R$ <span className='font-semibold text-[#000]'>0,00</span></p>
-                        <IoEyeOutline className="ml-[15px] text-[22px] text-[#666] cursor-pointer"/>
+                        <p className='font-normal text-[#888]'>R$ <span className='font-semibold text-[#000]'>
+                            {amountVisible ? '0,00' : '-----'}
+                        </span></p>
+                        {amountVisible ? 
+                        <IoEyeOutline className="ml-[15px] text-[22px] text-[#666] cursor-pointer"
+                        onClick={() => setAmountVisible(!amountVisible)}/>
+                        :
+                        <IoEyeOffOutline className="ml-[15px] text-[22px] text-[#666] cursor-pointer"
+                        onClick={() => setAmountVisible(!amountVisible)}/>
+                        }
                     </div>
                 </div>
             </div>
@@ -68,7 +79,9 @@ export default function GeneralAmout() {
                                     <p className="text-[15px] font-light">Conta manual</p>
                                 </div>
                             </div>
-                            <p className='font-semibold text-secondary'>R$ 0,00</p>
+                            <p className='font-semibold text-secondary'>
+                                R$ {amountVisible ? ' 0,00' : '-----'}
+                            </p>
                         </div>
                     </div>
                     <button className='w-full border-[1px] rounded-lg border-[#eee] 

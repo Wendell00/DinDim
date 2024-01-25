@@ -40,7 +40,7 @@ const Navbar = () => {
   const navlinks:  NavLinksType[] = [
     {
         link: 'Visão Geral',
-        href: 'home',
+        href: '/app/home',
     },
     {
         link: 'Lançamentos',

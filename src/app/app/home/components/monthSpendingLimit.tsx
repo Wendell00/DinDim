@@ -45,12 +45,10 @@ export default function MonthSpendingLimit() {
             transition={{ delay: .3 }}
             initial="hidden"
             animate="show">
-                <div className={`flex h-[260px] flex-col justify-between`}>
-                    <div className='h-[50%]'>
+                <div className='flex h-[200px] flex-col justify-between'>
                         <div className='mt-[15px] flex items-center justify-center h-[100%]'>
-                            <p className='text-[17px] text-[#999] font-medium'>Nenhum Limite de Gasto definido para o período</p>
+                            <p className='text-[17px] text-[#999] font-medium'>Nenhum limite de gasto definido para o período</p>
                         </div>
-                    </div>
                 </div>
             </motion.div> : ''}
     </div>

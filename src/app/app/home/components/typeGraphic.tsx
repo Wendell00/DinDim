@@ -2,11 +2,13 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { FormContext } from '@/app/contexts/infoContext'
 
 export default function TypeGraphic() {
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedAnyOption, setSelectedAnyOption] = useState(false)
+  const {setConfig} = useContext(FormContext)
 
   interface Option {
     id: string;
@@ -79,7 +81,7 @@ export default function TypeGraphic() {
             </div>
           ))}
         </div>
-        <Link href="/app/dashboard" className='w-full md:w-[40%] h-[50px]'>
+        <div className='w-full md:w-[40%] h-[50px]'>
           <button
             disabled={!selectedAnyOption}
             className={`${
@@ -87,10 +89,11 @@ export default function TypeGraphic() {
                 ? 'text-[#fff] bg-[#053B50]'
                 : 'bg-[#eee] text-[#999]'
             } w-full h-[100%] md:w-[100%] md:h-[50px] rounded-lg mt-[25px] font-semibold`}
+            onClick={()=>setConfig(2)}
           >
             Continuar
           </button>
-        </Link>
+        </div>
       </form>
     </div>
   )

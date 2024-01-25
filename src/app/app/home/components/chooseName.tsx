@@ -1,14 +1,16 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useState } from 'react'
 import {useForm} from 'react-hook-form'
 import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FormContext } from '@/app/contexts/infoContext'
+import { useContext } from 'react';
 
 export default function ChooseName() {
   const [errorMessage, setErrorMessage] = useState('')
+  const {setConfig, setName} = useContext(FormContext)
 
   const schema = z.object({
       name: z.string()
@@ -31,6 +33,8 @@ export default function ChooseName() {
   // Após validar o schema
   async function handleValidationForm(data: FormData){
       setErrorMessage(JSON.stringify(data, null, 2))
+      setName(data.name)
+      setConfig(1)
   }
 
   type FormData = z.infer<typeof schema> 

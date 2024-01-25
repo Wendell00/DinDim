@@ -45,12 +45,10 @@ export default function InvestmentTips() {
             transition={{ delay: .3 }}
             initial="hidden"
             animate="show">
-                <div className={`flex h-[260px] flex-col justify-between`}>
-                    <div className='h-[50%]'>
+                <div className='flex h-[200px] flex-col justify-between'>
                         <div className='mt-[15px] flex items-center justify-center h-[100%]'>
                             <p className='text-[17px] text-[#999] font-medium'>No momento não há dicas de investimento.</p>
                         </div>
-                    </div>
                 </div>
             </motion.div> : ''}
     </div>

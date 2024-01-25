@@ -2,15 +2,17 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState, useEffect } from "react";
-import { IoCardOutline } from "react-icons/io5";
-import { IoEyeOutline } from "react-icons/io5";
+import React, { useState, useEffect, useContext } from "react";
+import { IoEyeOutline, IoEyeOffOutline, IoCardOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import {motion} from 'framer-motion'
+import { FormContext } from '@/app/contexts/infoContext'
 
 export default function GeneralCard() {
     const [altura, setAltura] = useState<number>(390);
     const [hoverComponent, setHoverComponent] = useState(false)
+
+    const {amountVisible, setAmountVisible} = useContext(FormContext)
 
     const handleClick = () => {
       // Atualiza a altura da div ao clicar no ícone
@@ -32,8 +34,16 @@ export default function GeneralCard() {
                 <div className='border-l-4 border-[#129e3f] h-[70%] flex flex-col px-4'>
                     <p className='text-[#888] text-[15px]'>Todas as faturas</p>
                     <div className='flex items-center'>
-                        <p className='font-normal text-[#888]'>R$ <span className='font-semibold text-[#000]'>0,00</span></p>
-                        <IoEyeOutline className="ml-[15px] text-[22px] text-[#666] cursor-pointer"/>
+                        <p className='font-normal text-[#888]'>R$ <span className='font-semibold text-[#000]'>
+                            {amountVisible ? '0,00' : '-----'}
+                        </span></p>
+                        {amountVisible ? 
+                        <IoEyeOutline className="ml-[15px] text-[22px] text-[#666] cursor-pointer"
+                        onClick={() => setAmountVisible(!amountVisible)}/>
+                        :
+                        <IoEyeOffOutline className="ml-[15px] text-[22px] text-[#666] cursor-pointer"
+                        onClick={() => setAmountVisible(!amountVisible)}/>
+                        }
                     </div>
                 </div>
             </div>

@@ -21,10 +21,32 @@ export default function LoginComponent({ page }: any) {
     
   return (
     <>
-        <div className='w-[100%] h-[auto]'>
+        <div className='w-[100%] h-auto'>
             <h2 className='text-center font-semibold text-2xl mt-[30px] text-[#333]'>Acesse sua conta</h2>
-            <div className={`${facebookHover ? 'bg-[#3b5998] border-[#3b599890]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer mt-[25px] duration-300`} onMouseEnter={() =>{setFacebookHover(true)}} onMouseLeave={() =>{setFacebookHover(false)}}><FaFacebookF className={`${facebookHover ? 'invisible' : 'visible'} text-[#3b5998] text-2xl `}/><div className='w-full'><p className={`${facebookHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Entre com o Facebook</p></div></div>
-            <div className={`${googleHover ? 'bg-[#EA4435] border-[#EA443590]' : 'bg-[#fff] border-[#eee]'} w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer justify-center mt-[15px]`} onMouseEnter={() =>{setGoogleHover(true)}} onMouseLeave={() =>{setGoogleHover(false)}}><FcGoogle className={`${googleHover ? 'invisible' : 'visible'} text-2xl `}/><div className='w-full'><p className={`${googleHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>Entre com o Google</p></div></div>
+            <div className={`${facebookHover ? 'bg-[#3b5998] border-[#3b599890]' : 'bg-[#fff] border-[#eee]'} 
+            w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer mt-[25px] duration-300`}
+             onMouseEnter={() =>{setFacebookHover(true)}} 
+             onMouseLeave={() =>{setFacebookHover(false)}}>
+                <FaFacebookF className={`${facebookHover ? 'invisible' : 'visible'} text-[#3b5998] text-2xl `}/>
+                <div className='w-full'>
+                    <p className={`${facebookHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>
+                        Entre com o Facebook
+                    </p>
+                </div>
+            </div>
+
+            <div className={`${googleHover ? 'bg-[#EA4435] border-[#EA443590]' : 'bg-[#fff] border-[#eee]'} 
+            w-full border rounded-lg px-4 py-3 flex items-center cursor-pointer justify-center mt-[15px]`} 
+            onMouseEnter={() =>{setGoogleHover(true)}} 
+            onMouseLeave={() =>{setGoogleHover(false)}}>
+                <FcGoogle className={`${googleHover ? 'invisible' : 'visible'} text-2xl `}/>
+                <div className='w-full'>
+                    <p className={`${googleHover ? 'text-[#fff]' : 'text-[#000]'} text-center font-semibold`}>
+                        Entre com o Google
+                    </p>
+                </div>
+            </div>
+
             <div className='relative w-full mt-[25px] flex justify-center'>
                 <p className='bg-[#fff] text-center relative z-30 w-[35px] text-[#444]'>ou</p>
                 <div className='w-full h-[1px] bg-[#bbb] absolute bottom-[10px] z-20'></div>

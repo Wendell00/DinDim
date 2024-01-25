@@ -15,8 +15,13 @@ const config: Config = {
         'main-background': "url('/background.png')",  
       },
       height:{
-        'mainApp': 'calc(100vh - 52px)'
+        'mainApp': 'calc(100vh - 52px)',
+        'loginApp': 'calc(100vh - 60px)'
       },
+      colors: {
+        'primary': '#053B50',
+        'primaryOpacity': '#053B50cc'
+      }
     },
   },
   plugins: [],

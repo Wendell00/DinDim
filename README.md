@@ -13,9 +13,3 @@ pnpm dev
 # or
 bun dev
 ```
-
-<<<<<<< HEAD
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-=======
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
->>>>>>> 2feda2055137f81ac5aaad7098500437d641fd3e

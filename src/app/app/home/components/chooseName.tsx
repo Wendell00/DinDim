@@ -40,8 +40,9 @@ export default function ChooseName() {
   type FormData = z.infer<typeof schema> 
 
   return (
-    <div className='w-screen sm:w-[90%] md:w-[867px] h-auto sm:h-[450px] bg-[#fff] rounded-lg shadow-2xl overflow-hidden flex relative'>
-        <div className='w-full md:w-[60%] h-full bg-white p-12 flex justify-start'>
+    <div className='w-screen sm:w-[90%] md:w-[867px] h-auto sm:h-[450px] bg-[#fff]
+    rounded-lg shadow-2xl overflow-hidden flex relative'>
+        <div className='w-full md:w-[60%] h-full bg-white  p-12 flex justify-start'>
             <div className='w-full md:w-[80%] h-full'>
               <h2 className='font-bold text-[14px] sm:text-[16px]'>Vamos começar com o pé direito!</h2>
               <p className='font-normal text-[14px] sm:text-[16px] max-w-[420px] mt-[10px]'>Você está dando um ótimo passo em sua vida financeira, para começar como quer ser chamado?</p>

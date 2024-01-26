@@ -19,13 +19,13 @@ export default function BillsToReceive() {
       }
 
   return (
-    <div className={`divExpansivel w-[100%] bg-[#fff] rounded-md flex flex-col justify-between py-6 px-8 mt-[20px]`} 
+    <div className={`divExpansivel w-[100%] bg-[#fff] dark:bg-[#333] rounded-md flex flex-col justify-between py-6 px-8 mt-[20px]`} 
     style={{ height: `${altura == 90 ? '90px' : '260px'}` }}
     onMouseEnter={()=> setHoverComponent(true)}
     onMouseLeave={()=> setHoverComponent(false)}>
         <div className='w-full h-[50px] flex justify-between items-start'>
             <div className='h-[100%] flex justify-start items-start'>
-                <p className='font-semibold mt-[10px] text-[17px]'>Contas a receber</p>
+                <p className='font-semibold mt-[10px] text-[17px] dark:text-[#fff]'>Contas a receber</p>
             </div>
             <div className='flex h-[100%] items-start w-auto'>
                 {hoverComponent ? 
@@ -34,7 +34,7 @@ export default function BillsToReceive() {
                 transition={{ delay: .1 }}
                 initial="hidden"
                 animate="show">
-                    <IoMdArrowDropdown className="text-[25px] mt-[10px] hover:bg-[#eee] rounded-full cursor-pointer"
+                    <IoMdArrowDropdown className="text-[25px] mt-[10px] hover:bg-[#eee] rounded-full cursor-pointer dark:text-[#fff]"
                     onClick={handleClick}/>
                 </motion.div> : ''}
             </div>

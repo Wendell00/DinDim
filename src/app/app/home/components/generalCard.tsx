@@ -25,16 +25,16 @@ export default function GeneralCard() {
       }
 
   return (
-    <div className={`divExpansivel w-[100%] bg-[#fff] rounded-md flex flex-col justify-between py-6 px-8`} 
+    <div className={`divExpansivel w-[100%] bg-[#fff] dark:bg-[#333]  rounded-md flex flex-col justify-between py-6 px-8`} 
     style={{ height: `${altura == 110 ? '110px' : '390px'}` }}
     onMouseEnter={()=> setHoverComponent(true)}
     onMouseLeave={()=> setHoverComponent(false)}>
         <div className='border-b w-full h-[70px] flex justify-between items-start'>
             <div className='h-[100%] flex justify-start items-start'>
                 <div className='border-l-4 border-[#129e3f] h-[70%] flex flex-col px-4'>
-                    <p className='text-[#888] text-[15px]'>Todas as faturas</p>
+                    <p className='text-[#888] text-[15px] dark:text-[#fff]'>Todas as faturas</p>
                     <div className='flex items-center'>
-                        <p className='font-normal text-[#888]'>R$ <span className='font-semibold text-[#000]'>
+                        <p className='font-normal text-[#888] '>R$ <span className='font-semibold text-[#000] dark:text-[#fff]'>
                             {amountVisible ? '0,00' : '-----'}
                         </span></p>
                         {amountVisible ? 
@@ -67,7 +67,7 @@ export default function GeneralCard() {
             animate="show">
                 <div className={`flex h-[270px] flex-col justify-between`}>
                     <div className='h-[50%]'>
-                        <p className='font-semibold mt-[20px] text-[17px]'>Meus cartões</p>
+                        <p className='font-semibold mt-[20px] text-[17px] dark:text-[#fff]'>Meus cartões</p>
                         <div className='mt-[15px] flex items-center justify-center h-[100%]'>
                             <IoCardOutline className="text-[50px] text-[#ccc] mr-[12px]"/>
                             <p className='text-[17px] text-[#999] font-medium'>Adicione seu primeiro cartão</p>

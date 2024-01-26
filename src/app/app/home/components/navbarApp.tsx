@@ -3,9 +3,12 @@
 import localFont from 'next/font/local'
 import Image from 'next/image'
 import {FaGear, FaBell, FaCircleUser} from 'react-icons/fa6'
+import { FaMoon, FaSun } from "react-icons/fa";
 import { LuAlignJustify, LuX } from "react-icons/lu";
 import { useState, useEffect } from 'react';
 import Link from 'next/link'
+import ModalUser from './modalUser';
+import ModalNotification from './modalNotification';
 
 const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
 
@@ -17,6 +20,10 @@ interface DocumentWithBodyClassList extends Document {
 
 const Navbar = () => { 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [modalUser, setModalUser] = useState(false)
+    const [modalNotification, setModalNotification] = useState(false)
+    const [modalConfig, setModalConfig] = useState(false)
+    const [darkMode, setDarkMode] = useState(false)
 
     useEffect(() => {
     const documentWithClassList = document as DocumentWithBodyClassList;
@@ -31,6 +38,16 @@ const Navbar = () => {
     const handleToggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+    useEffect(() => {
+        // Acessar a tag <html>
+        const htmlElement = document.querySelector('html');
+    
+        // Exemplo de manipulação
+        if (htmlElement && darkMode) {
+          htmlElement.classList.add('dark')
+        }else htmlElement?.classList.remove('dark')
+    }, [darkMode]);
 
     interface NavLinksType {
         link: string;
@@ -83,9 +100,31 @@ const Navbar = () => {
                     ))}
                 </ul>
                 <div className="h-full hidden md:flex items-center text-white">
-                <FaGear className="w-auto cursor-pointer h-[37%] mr-4" />
-                <FaBell className="w-auto cursor-pointer h-[37%] mr-4" />
-                <FaCircleUser className="w-auto cursor-pointer h-[50%]" />
+                    {darkMode ?
+                    <FaSun className="w-auto cursor-pointer h-[37%] mr-4" onClick={()=> setDarkMode(!darkMode)}/>
+                    :
+                    <FaMoon className="w-auto cursor-pointer h-[37%] mr-4" onClick={()=> setDarkMode(!darkMode)}/>}
+                    <FaGear className="w-auto cursor-pointer h-[37%] mr-4" />
+                    <div className='h-full relative flex items-center'>
+                        <FaBell className="w-auto cursor-pointer h-[37%] mr-4"
+                            onMouseEnter={()=>setModalNotification(true)}
+                        />
+                        {
+                            modalNotification && (
+                                <div onMouseLeave={()=>setModalNotification(false)}> <ModalNotification/> </div>
+                            )
+                        }
+                    </div>
+                    <div className='h-full relative flex items-center'>
+                        <FaCircleUser className="w-auto cursor-pointer h-[50%]" 
+                            onMouseEnter={()=>setModalUser(true)}
+                        />
+                        {
+                            modalUser && (
+                                <div onMouseLeave={()=>setModalUser(false)}> <ModalUser/> </div>
+                            )
+                        }
+                    </div>
                 </div>
                 <div className='h-full flex md:hidden items-center text-white' onClick={handleToggleSidebar}>
                     {isSidebarOpen ? 

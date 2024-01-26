@@ -5,7 +5,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import {motion} from 'framer-motion'
 
 export default function BillsToReceive() {
+    // Estado para colocar uma altura inicial no componente
     const [altura, setAltura] = useState<number>(260);
+    // Estado para verificar se o mouse está em cima do componente para mostar a arrow para o dropdown
     const [hoverComponent, setHoverComponent] = useState(false)
 
     const handleClick = () => {
@@ -13,6 +15,7 @@ export default function BillsToReceive() {
       setAltura(altura === 90 ? 260 : 90);
     };
 
+    // animação para o motion 
     const item = {
         hidden: { opacity: 0 },
         show: { opacity: 1 }

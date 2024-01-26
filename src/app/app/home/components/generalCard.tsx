@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import React, { useState, useEffect, useContext } from "react";
 import { IoEyeOutline, IoEyeOffOutline, IoCardOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -9,9 +7,11 @@ import {motion} from 'framer-motion'
 import { FormContext } from '@/app/contexts/infoContext'
 
 export default function GeneralCard() {
+    // Estado para colocar uma altura inicial no componente
     const [altura, setAltura] = useState<number>(390);
+    // Estado para verificar se o mouse está em cima do componente para mostar a arrow para o dropdown
     const [hoverComponent, setHoverComponent] = useState(false)
-
+    // Estado para habilitar/desabilitar a visibilidade do saldo
     const {amountVisible, setAmountVisible} = useContext(FormContext)
 
     const handleClick = () => {

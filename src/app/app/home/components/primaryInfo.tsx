@@ -10,6 +10,7 @@ import { BiTransfer } from "react-icons/bi";
 import { FormContext } from '@/app/contexts/infoContext'
 import AddExpense from './addExpense/addExpense';
 
+// Função para verificar o horário do dia e passar uma mensagem personalizada
 function GetHoursForMessage(){
     const [hora, setHora] = useState(new Date());
     return {
@@ -19,7 +20,10 @@ function GetHoursForMessage(){
 }
 
 export default function PrimaryInfo() {
+    // amountVisible para armazenar o estado da visibilidade do saldo
+    // name para mostrar o nome do usuario
     const {amountVisible, name} = useContext(FormContext)
+    // Estado para abrir/fechar o Modal de Adicionar Dividas.
     const [modalExpense, setModalExpense] = useState(false)
 
     interface DocumentWithBodyClassList extends Document {
@@ -28,6 +32,7 @@ export default function PrimaryInfo() {
         };
     }
 
+    // useEffect para que quando o modalExpense for aberto tirar o scroll do html
     useEffect(() => {
         const documentWithClassList = document as DocumentWithBodyClassList;
     

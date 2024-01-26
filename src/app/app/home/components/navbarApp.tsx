@@ -10,6 +10,7 @@ import Link from 'next/link'
 import ModalUser from './modalUser';
 import ModalNotification from './modalNotification';
 import { FormContext } from '@/app/contexts/infoContext'
+import { usePathname } from 'next/navigation'
 
 const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
 
@@ -20,20 +21,28 @@ interface DocumentWithBodyClassList extends Document {
 }
 
 const Navbar = () => { 
+    // Estado para verificar se a aside está aberta
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    // Estado para abrir o modal das configurações de perfil
     const [modalUser, setModalUser] = useState(false)
+    // Estado para abrir o modal das configurações de notificação
     const [modalNotification, setModalNotification] = useState(false)
+    // Estado para abrir o modal das configurações
     const [modalConfig, setModalConfig] = useState(false)
+    // Estado para habilitar/desabilitar Dark Mode
     const [darkMode, setDarkMode] = useState(false)
+    // Name para mostrar o nome na aplicação
     const {name} = useContext(FormContext)
+    const pathname = usePathname()
 
+    // useEffect para tirar o Scroll do HTML quando a sideBar estiver aberta
     useEffect(() => {
     const documentWithClassList = document as DocumentWithBodyClassList;
 
     if (isSidebarOpen) {
         documentWithClassList.body.classList.add("overflow-y-hidden");
     } else {
-        // documentWithClassList.body.classList.remove("overflow-y-hidden");
+        documentWithClassList.body.classList.remove("overflow-y-hidden");
     }
     }, [isSidebarOpen]);
 
@@ -41,6 +50,7 @@ const Navbar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    // useEffect para aplicar a class dark para ativar o Dark Mode segundo a doc do TailWind
     useEffect(() => {
         // Acessar a tag <html>
         const htmlElement = document.querySelector('html');
@@ -56,6 +66,7 @@ const Navbar = () => {
         href: string;
     }
 
+  // Links da nav
   const navlinks:  NavLinksType[] = [
     {
         link: 'Visão Geral',
@@ -95,7 +106,9 @@ const Navbar = () => {
                     {navlinks.map((navlink) => (
                         <Link href={navlink.href} key={navlink.link}>
                             <li
-                            >
+                            className={`${pathname == `/app/${navlink.href}`
+                             || pathname == `/app/home` && navlink.link == 'Visão Geral' 
+                             ? 'text-secondary' : ''} hover:text-secondary`}>
                             {navlink.link}
                             </li>
                         </Link>
@@ -129,15 +142,15 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className='h-full flex md:hidden items-center text-white' onClick={handleToggleSidebar}>
-                    {isSidebarOpen ? 
-                    <LuX className="w-auto cursor-pointer h-[60%] mr-2"/> : 
-                    <LuAlignJustify className="w-auto cursor-pointer h-[60%] mr-2"/>}
+                    {!isSidebarOpen && <LuAlignJustify className="w-auto cursor-pointer h-[60%] mr-2"/>} 
                 </div>
             </div>
         </nav>
         {isSidebarOpen ? 
             <div className='absolute w-screen min-h-screen h-auto bg-[#00000077] z-30 top-0 flex justify-end overflow-y-auto'>
-                <aside className='w-[280px] min-h-screen bg-white flex flex-col justify-between px-4'>
+                <aside className='w-[280px] min-h-screen bg-white flex flex-col justify-between px-4 overflow-y-auto'>
+                     <LuX className="absolute top-[15px] right-[15px] w-auto cursor-pointer text-[30px] mr-2"
+                     onClick={()=> setIsSidebarOpen(false)}/>
                     <div className='flex flex-col'>
                         <FaCircleUser className="text-primary w-auto cursor-pointer h-[85px] mt-[30px]" />
                         <h2 className='text-[20px] text-[#000] text-center font-medium mt-[15px]'>{name}</h2>
@@ -155,11 +168,13 @@ const Navbar = () => {
                     </div>
 
                     <div>
-                        <div className='w-full h-auto flex justify-start items-center border-b border-[#eee] px-4 pb-4 mt-[15px] cursor-pointer'>
+                        <div className='w-full h-auto flex justify-start items-center border-b border-[#eee] px-4 pb-4 mt-[15px]
+                         cursor-pointer'>
                             <FaBell className="w-auto cursor-pointer h-[28px] mr-4 text-primary" />
                             Notificações
                         </div>
-                        <div className='w-full h-auto flex justify-start items-center border-b border-[#eee] px-4 pb-4 mt-[15px] cursor-pointer'>
+                        <div className='w-full h-auto flex justify-start items-center border-b border-[#eee] px-4 pb-4 mt-[15px] 
+                        cursor-pointer'>
                             <FaGear className="w-auto cursor-pointer h-[28px] mr-4 text-primary" />
                             Configurações
                         </div>

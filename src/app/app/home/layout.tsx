@@ -13,6 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <>
+      {/*ContextProvider para armazenas os estados por toda a aplicação */}
       <FormContextProvider>
         <Navbar/>
         {children}

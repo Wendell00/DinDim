@@ -10,9 +10,11 @@ import {motion} from 'framer-motion'
 import { FormContext } from '@/app/contexts/infoContext'
 
 export default function GeneralAmout() {
+    // Estado para colocar uma altura inicial no componente
     const [hoverComponent, setHoverComponent] = useState(false)
+    // Estado para verificar se o mouse está em cima do componente para mostar a arrow para o dropdown
     const [altura, setAltura] = useState<number>(340);
-
+    // Estado para habilitar/desabilitar a visibilidade do saldo
     const {amountVisible, setAmountVisible} = useContext(FormContext)
 
     const handleClick = () => {
@@ -20,6 +22,7 @@ export default function GeneralAmout() {
       setAltura(altura === 110 ? 340 : 110);
     };
 
+    // variante para a animação do motion
     const item = {
         hidden: { opacity: 0 },
         show: { opacity: 1 }

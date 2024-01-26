@@ -7,6 +7,7 @@ import ChooseName from './chooseName';
 import TypeGraphic from './typeGraphic';
 
 export default function ComponentVerify() {
+    // config para verificar em qual etapa está na /app/home
     const {config} = useContext(FormContext)
   
     return (

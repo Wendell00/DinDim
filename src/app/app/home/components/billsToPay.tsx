@@ -7,8 +7,11 @@ import { FormContext } from "@/app/contexts/infoContext";
 import { categoriesExpense } from "../lib/accounts";
 
 export default function BillsToPay() {
+    // Estado para colocar uma altura inicial no componente
     const [altura, setAltura] = useState<number>(260);
+    // Estado para verificar se o mouse está em cima do componente para mostar a arrow para o dropdown
     const [hoverComponent, setHoverComponent] = useState(false)
+    // listExpense para pegarmos a lista de Dividas já criadas
     const {listExpense} = useContext(FormContext)
 
     const handleClick = () => {
@@ -16,6 +19,7 @@ export default function BillsToPay() {
       setAltura(altura === 90 ? 260 : 90);
     };
 
+    // animação para o motion 
     const item = {
         hidden: { opacity: 0 },
         show: { opacity: 1 }

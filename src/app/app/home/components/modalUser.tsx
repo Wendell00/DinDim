@@ -6,6 +6,7 @@ import { FormContext } from '@/app/contexts/infoContext';
 import { useContext } from 'react';
 
 export default function ModalUser() {
+    // name para mostrar o nome na aplicação
     const {name} = useContext(FormContext)
     return(
         <>

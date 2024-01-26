@@ -27,12 +27,12 @@ export default function AddExpense(props: AddExpenseProps){
 
   const [selectedAccount, setSelectedAccount] = useState({
     name: '',
-    icon: FaWallet // Supondo que FaWallet seja um ícone do React
+    icon: FaWallet 
   });
 
   const [selectedCategories, setSelectedCategories] = useState({
     name: '',
-    icon: FaWallet // Supondo que FaWallet seja um ícone do React
+    icon: FaWallet 
   });
 
   const {register,
@@ -51,6 +51,8 @@ export default function AddExpense(props: AddExpenseProps){
       account: textAccount,
       categorie: textCategories
     }]);
+
+    props.setModalExpense(false)
 
   }
   

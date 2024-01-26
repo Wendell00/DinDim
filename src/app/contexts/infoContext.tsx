@@ -1,6 +1,5 @@
 'use client'
 
-import { List } from 'postcss/lib/list';
 import { createContext, useReducer, ReactNode } from 'react'
 
 interface FormContextProviderProps {
@@ -16,12 +15,16 @@ interface ExpenseItem {
 }
 
 interface FormContextData {
+  // Visibilidade do Saldo
   amountVisible: boolean;
   setAmountVisible: (amountVisible: boolean) => void;
+  // O Nome escolhido
   name: string;
   setName: (name: string) => void;
+  // Mudar o componente na /app/home
   config: number;
   setConfig: (config: number) => void;
+  // Armazenar a lista de Depesas que forem criadas
   listExpense: ExpenseItem[];
   setListExpense: (listExpense: ExpenseItem[]) => void; 
 }
@@ -30,7 +33,7 @@ type Action =
   | { type: 'SET_AMOUNTVISIBLE', payload: boolean }
   | { type: 'SET_NAME', payload: string}
   | { type: 'SET_CONFIG', payload: number}
-  | { type: 'SET_LISTEXPENSE', payload: ExpenseItem[] }; // Ajustado para ExpenseItem[]
+  | { type: 'SET_LISTEXPENSE', payload: ExpenseItem[] };
 
 function reducer(state: FormContextData, action: Action) {
   switch (action.type) {
@@ -41,7 +44,7 @@ function reducer(state: FormContextData, action: Action) {
     case 'SET_CONFIG':
       return { ...state, config: action.payload };
     case 'SET_LISTEXPENSE':
-      return { ...state, listExpense: action.payload }; // Ajustado para payload ser do tipo ExpenseItem[]
+      return { ...state, listExpense: action.payload };
     default:
       return state;
   }

@@ -2,7 +2,7 @@
 
 import localFont from 'next/font/local'
 import Image from 'next/image'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import LoginComponent from './components/login';
@@ -37,7 +37,8 @@ export default function Login() {
         pauseOnHover
         theme="light" 
         />
-        <div className={`${page == 1 ? 'order-2' : ''} w-full md:w-[45%] h-auto bg-[#ddd] flex flex-col items-center justify-center relative z-30`}>
+        <div className={`${page == 1 ? 'order-2' : ''} w-full md:w-[45%] h-auto bg-[#ddd] flex flex-col i
+        tems-center justify-center relative z-30`}>
             <div className='w-[100%] h-[60px] bg-[#053B50] flex justify-center items-center md:hidden'>
                 <h1 className={`${myFont.className} text-[2em] text-white mr-[10px]`}> 
                     <span className='text-[#64ccc5]'>

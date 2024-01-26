@@ -5,7 +5,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import {motion} from 'framer-motion'
 
 export default function InvestmentTips() {
+    // Estado para colocar uma altura inicial no componente
     const [altura, setAltura] = useState<number>(260);
+    // Estado para verificar se o mouse está em cima do componente para mostar a arrow para o dropdown
     const [hoverComponent, setHoverComponent] = useState(false)
 
     const handleClick = () => {
@@ -13,6 +15,7 @@ export default function InvestmentTips() {
       setAltura(altura === 90 ? 260 : 90);
     };
 
+    // variante da animação pro motion
     const item = {
         hidden: { opacity: 0 },
         show: { opacity: 1 }
@@ -34,7 +37,8 @@ export default function InvestmentTips() {
                 transition={{ delay: .1 }}
                 initial="hidden"
                 animate="show">
-                    <IoMdArrowDropdown className="text-[25px] mt-[10px] hover:bg-[#eee] rounded-full cursor-pointer dark:text-[#fff]"
+                    <IoMdArrowDropdown className="text-[25px] mt-[10px] hover:bg-[#eee] rounded-full
+                    cursor-pointer dark:text-[#fff]"
                     onClick={handleClick}/>
                 </motion.div> : ''}
             </div>

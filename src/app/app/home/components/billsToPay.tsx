@@ -1,12 +1,15 @@
 'use client'
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import {motion} from 'framer-motion'
+import { FormContext } from "@/app/contexts/infoContext";
+import { categoriesExpense } from "../lib/accounts";
 
 export default function BillsToPay() {
     const [altura, setAltura] = useState<number>(260);
     const [hoverComponent, setHoverComponent] = useState(false)
+    const {listExpense} = useContext(FormContext)
 
     const handleClick = () => {
       // Atualiza a altura da div ao clicar no ícone
@@ -17,10 +20,9 @@ export default function BillsToPay() {
         hidden: { opacity: 0 },
         show: { opacity: 1 }
       }
-
   return (
     <div className={`divExpansivel w-[100%] bg-[#fff] dark:bg-[#333] rounded-md flex flex-col justify-between py-6 px-8 mt-[20px]`} 
-    style={{ height: `${altura == 90 ? '90px' : '260px'}` }}
+    style={{ height: `${altura == 90 ? '90px' : `${listExpense.length == 0 ? '260' : listExpense.length == 1 ? '190' : (listExpense.length * 100) + 100}px`}` }}
     onMouseEnter={()=> setHoverComponent(true)}
     onMouseLeave={()=> setHoverComponent(false)}>
         <div className='w-full h-[50px] flex justify-between items-start'>
@@ -45,11 +47,35 @@ export default function BillsToPay() {
             transition={{ delay: .3 }}
             initial="hidden"
             animate="show">
-                <div className='flex h-[200px] flex-col justify-between'>
+                {
+                    listExpense[0] ? 
+                    <div className="">
+                        {listExpense.map((list) => (
+                            <div key={list.description} className="w-full flex h-auto justify-between mb-[30px]">
+                                <div className="w-[40%] flex">
+                                    {categoriesExpense.map((item) => {
+                                        return (
+                                            list.categorie === item.name ? <div className="flex items-center justify-center w-[50px] h-[50px] text-[30px] bg-[#ccc] rounded-full">{<item.icon/>}</div> : null
+                                        );
+                                    })}
+                                    <div>
+                                        <p className="font-medium text-[14px] ml-[15px]">{list.description}</p>
+                                        <p className="font-medium text-[14px] ml-[15px]">{list.data}</p>
+                                    </div>
+                                </div>
+                                <div className="w-[30%] flex justify-end items-center">
+                                    <p className="font-medium text-[14px]">R$ -{list.value}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    :                 
+                    <div className='flex h-[200px] flex-col justify-between'>
                         <div className='mt-[15px] flex items-center justify-center h-[100%]'>
                             <p className='text-[17px] text-[#999] font-medium'>No momento você não possui contas a pagar</p>
                         </div>
-                </div>
+                    </div>
+                }
             </motion.div> : ''}
     </div>
   )

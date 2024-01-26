@@ -7,6 +7,7 @@ import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormContext } from '@/app/contexts/infoContext'
 import { useContext } from 'react';
+import {motion} from 'framer-motion'
 
 export default function ChooseName() {
   const [errorMessage, setErrorMessage] = useState('')

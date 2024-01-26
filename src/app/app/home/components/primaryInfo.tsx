@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useState, useContext, useEffect } from 'react';
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FiMinus } from "react-icons/fi";
@@ -9,7 +8,7 @@ import { FaPlus } from "react-icons/fa6";
 import { TbPaperclip } from "react-icons/tb";
 import { BiTransfer } from "react-icons/bi";
 import { FormContext } from '@/app/contexts/infoContext'
-import AddExpense from './addExpense';
+import AddExpense from './addExpense/addExpense';
 
 function GetHoursForMessage(){
     const [hora, setHora] = useState(new Date());
@@ -36,19 +35,15 @@ export default function PrimaryInfo() {
             documentWithClassList.body.classList.add("overflow-y-hidden");
             window.scrollTo({ top: 0, left: 0 });
         } else {
-            // documentWithClassList.body.classList.remove("overflow-y-hidden");
+            documentWithClassList.body.classList.remove("overflow-y-hidden");
         }
         }, [modalExpense]);
-    
-        const handleToggleSidebar = () => {
-            setModalExpense(!modalExpense);
-    };
     
   
   return (
     <>
         {
-            modalExpense && (<AddExpense/>)
+            modalExpense && (<AddExpense setModalExpense={setModalExpense}/>)
         }
         <div className='w-full h-[350px] laptop:h-[180px] bg-[#fff] dark:bg-[#333] rounded-md flex 
         flex-col laptop:flex-row justify-between  px-2 py-6 sm:px-12 laptop:px-4 desktop:px-8'>

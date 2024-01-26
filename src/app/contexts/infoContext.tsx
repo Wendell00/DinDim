@@ -1,9 +1,18 @@
 'use client'
 
+import { List } from 'postcss/lib/list';
 import { createContext, useReducer, ReactNode } from 'react'
 
 interface FormContextProviderProps {
   children: ReactNode
+}
+
+interface ExpenseItem {
+  description: any,
+  value: any,
+  data: any,
+  account: any,
+  categorie: any
 }
 
 interface FormContextData {
@@ -13,12 +22,15 @@ interface FormContextData {
   setName: (name: string) => void;
   config: number;
   setConfig: (config: number) => void;
+  listExpense: ExpenseItem[];
+  setListExpense: (listExpense: ExpenseItem[]) => void; 
 }
 
 type Action =
   | { type: 'SET_AMOUNTVISIBLE', payload: boolean }
   | { type: 'SET_NAME', payload: string}
   | { type: 'SET_CONFIG', payload: number}
+  | { type: 'SET_LISTEXPENSE', payload: ExpenseItem[] }; // Ajustado para ExpenseItem[]
 
 function reducer(state: FormContextData, action: Action) {
   switch (action.type) {
@@ -28,6 +40,8 @@ function reducer(state: FormContextData, action: Action) {
       return { ...state, name: action.payload };
     case 'SET_CONFIG':
       return { ...state, config: action.payload };
+    case 'SET_LISTEXPENSE':
+      return { ...state, listExpense: action.payload }; // Ajustado para payload ser do tipo ExpenseItem[]
     default:
       return state;
   }
@@ -39,8 +53,13 @@ export function FormContextProvider({ children }: FormContextProviderProps) {
   const [state, dispatch] = useReducer(reducer, { 
     amountVisible: true, setAmountVisible: () => {},
     name: '', setName: () => {},
-    config: 0, setConfig: () => {}
+    config: 0, setConfig: () => {},
+    listExpense: [], setListExpense: () => {}
     });
+
+  function setListExpense(newExpenseItem: any) {
+    dispatch({ type: 'SET_LISTEXPENSE', payload: newExpenseItem });
+  }
 
   function setAmountVisible(amountVisible: boolean) {
     dispatch({ type: 'SET_AMOUNTVISIBLE', payload: amountVisible });
@@ -58,7 +77,8 @@ export function FormContextProvider({ children }: FormContextProviderProps) {
     <FormContext.Provider value={{ 
       amountVisible: state.amountVisible, setAmountVisible, 
       name: state.name, setName,
-      config: state.config, setConfig
+      config: state.config, setConfig,
+      listExpense: state.listExpense, setListExpense
       }}>
       {children}
     </FormContext.Provider>

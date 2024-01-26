@@ -37,15 +37,6 @@ const config: Config = {
         'desktop': '1200px',
         // => @media (min-width: 1280px) { ... }
       },
-      keyframes: {
-        opacityUp: {
-          '0%': { opacity: '0%' },
-          '100%': { opacity: '100%' },
-        }
-      },
-      animation: {
-        opacityUp: 'opacityUp 1s ease-in-out',
-      }
     },
   },
   plugins: [],

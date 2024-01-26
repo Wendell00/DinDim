@@ -13,7 +13,7 @@ export default function ModalUser() {
             flex flex-col items-center p-6 shadow-xl">
                     <IoMdArrowDropup className="absolute top-[-22px] text-[#fff] text-[38px] right-[0px]"/>
                     <FaCircleUser className="text-primary text-[65px] dark:text-[#fff]"/>
-                    <p className='font-semibold mt-[10px] text-[#000] dark:text-[#fff]'>Wendell</p>
+                    <p className='font-semibold mt-[10px] text-[#000] dark:text-[#fff]'>{name}</p>
                     <div className='border-t border-[#bbb] h-[40px] w-full mt-[20px] flex flex-col items-center'>
                         <p className='font-medium cursor-pointer text-[#888] hover:text-primary mt-[10px] dark:text-[#fff]'>
                             Minha conta

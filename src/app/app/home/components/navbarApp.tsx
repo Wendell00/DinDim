@@ -5,10 +5,11 @@ import Image from 'next/image'
 import {FaGear, FaBell, FaCircleUser} from 'react-icons/fa6'
 import { FaMoon, FaSun } from "react-icons/fa";
 import { LuAlignJustify, LuX } from "react-icons/lu";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link'
 import ModalUser from './modalUser';
 import ModalNotification from './modalNotification';
+import { FormContext } from '@/app/contexts/infoContext'
 
 const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
 
@@ -24,6 +25,7 @@ const Navbar = () => {
     const [modalNotification, setModalNotification] = useState(false)
     const [modalConfig, setModalConfig] = useState(false)
     const [darkMode, setDarkMode] = useState(false)
+    const {name} = useContext(FormContext)
 
     useEffect(() => {
     const documentWithClassList = document as DocumentWithBodyClassList;
@@ -134,11 +136,11 @@ const Navbar = () => {
             </div>
         </nav>
         {isSidebarOpen ? 
-            <div className='absolute w-screen min-h-screen h-auto bg-[#00000077] z-30 top-0 flex justify-end overflow-y-scroll'>
+            <div className='absolute w-screen min-h-screen h-auto bg-[#00000077] z-30 top-0 flex justify-end overflow-y-auto'>
                 <aside className='w-[280px] min-h-screen bg-white flex flex-col justify-between px-4'>
                     <div className='flex flex-col'>
                         <FaCircleUser className="text-primary w-auto cursor-pointer h-[85px] mt-[30px]" />
-                        <h2 className='text-[20px] text-[#000] text-center font-medium mt-[15px]'>Username</h2>
+                        <h2 className='text-[20px] text-[#000] text-center font-medium mt-[15px]'>{name}</h2>
                         <ul className='flex flex-col w-full h-auto pt-[10px]'>
                             {navlinks.map((navlink) => (
                                 <Link href={navlink.href} key={navlink.link}>

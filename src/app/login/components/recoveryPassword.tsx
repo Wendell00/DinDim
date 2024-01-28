@@ -1,7 +1,5 @@
 import localFont from 'next/font/local'
 
-const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
-
 export default function RecoveryPasswordComponent({ page }: any) {
   return (
     <div className='w-[495px] h-auto bg-[#fff] mt-[20px] rounded-lg px-8'>

@@ -34,7 +34,6 @@ export default function LoginComponent({ page }: any) {
 
    // Após validar o schema
    function handleValidationForm(data: FormData){
-       setErrorMessage(JSON.stringify(data, null, 2))
        router.push('/app/home')
    }
 

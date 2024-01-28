@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Navbar from '../home/components/navbarApp'
+import Navbar from '../components/navbarApp'
 
 export const metadata: Metadata = {
   title: 'Din Dim - App',

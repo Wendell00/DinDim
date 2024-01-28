@@ -8,12 +8,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 // Definição do tipo para os bancos
 type Bank = {
     name: string;
-    icon: typeof FaWallet; // JSX.Element é o tipo de elemento React
+    icon: typeof FaWallet;
 };
 
 type Categories = {
     name: string;
-    icon: typeof FaWallet
+    icon: typeof FaWallet;
 }
 
 // Lista de bancos

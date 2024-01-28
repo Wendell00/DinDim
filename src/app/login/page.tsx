@@ -9,7 +9,7 @@ import LoginComponent from './components/login';
 import SignUpComponent from './components/cadastro';
 import RecoveryPasswordComponent from './components/recoveryPassword';
 
-const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
+const myFont = localFont({ src: '../fonts/semdisplay.woff' })
 
 export default function Login() {
     // estado para a troca de componentes de login/cadastro/esqueci a senha

@@ -12,7 +12,7 @@ import ModalNotification from './modalNotification';
 import { FormContext } from '@/app/contexts/infoContext'
 import { usePathname } from 'next/navigation'
 
-const myFont = localFont({ src: '../../../fonts/semdisplay.woff' })
+const myFont = localFont({ src: '../../fonts/semdisplay.woff' })
 
 interface DocumentWithBodyClassList extends Document {
     body: HTMLBodyElement & {

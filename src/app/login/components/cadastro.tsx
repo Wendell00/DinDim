@@ -11,7 +11,6 @@ export default function SignUpComponent({ page, notifyRegister }: any) {
     const [facebookHover, setFacebookHover] = useState(false)
     const [googleHover, setGoogleHover] = useState(false)
     const [emailDB, setEmailDB] = useState(false)
-    const [emailDBMessage, setEmailDBMessage] = useState('')
 
     const [errorMessage, setErrorMessage] = useState('')
 
